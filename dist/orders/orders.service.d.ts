@@ -21,4 +21,5 @@ export declare class OrdersService {
         status: string;
         estimatedMinutes: number;
     }>;
+    findRecentPending(): Promise<OrderEntity[]>;
 }

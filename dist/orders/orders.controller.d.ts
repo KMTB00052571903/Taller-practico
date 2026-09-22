@@ -13,4 +13,5 @@ export declare class OrdersController {
         status: string;
         estimatedMinutes: number;
     }>;
+    findRecentPending(): Promise<import("./entities/order.entity").OrderEntity[]>;
 }

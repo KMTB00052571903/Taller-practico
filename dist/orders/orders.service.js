@@ -83,6 +83,16 @@ let OrdersService = class OrdersService {
         const order = await this.findOne(id);
         return this.orderPreparationEstimateService.estimate(order);
     }
+    async findRecentPending() {
+        return this.ordersRepository.find({
+            where: { status: 'pending' },
+            order: { createdAt: 'ASC' },
+            take: 2,
+            relations: {
+                customer: true,
+            },
+        });
+    }
 };
 exports.OrdersService = OrdersService;
 exports.OrdersService = OrdersService = __decorate([

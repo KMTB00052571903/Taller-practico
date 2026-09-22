@@ -3,7 +3,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CustomerEntity } from './entities/customer.entity';
 import { OrderEntity } from './entities/order.entity';
-import { Repository } from 'typeorm';
+import { LessThan, MoreThan, Repository } from 'typeorm';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { OrderRulesService } from './order-rules/order-rules.service';
 import { OrderPreparationEstimateService } from './order-preparation-estimate/order-preparation-estimate.service';
@@ -97,5 +97,17 @@ export class OrdersService {
   }> {
     const order = await this.findOne(id);
     return this.orderPreparationEstimateService.estimate(order);
+  }
+
+  async findRecentPending(): Promise<OrderEntity[]> {
+    return this.ordersRepository.find({
+      // where: { quantity: LessThan(2) },
+      where: { status: 'pending' },
+      order: { createdAt: 'ASC' },
+      take: 2,
+      relations: {
+        customer: true,
+      },
+    });
   }
 }

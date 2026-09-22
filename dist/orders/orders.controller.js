@@ -37,6 +37,9 @@ let OrdersController = class OrdersController {
     estimatePreparationTime(id) {
         return this.ordersService.estimatePreparationTime(Number(id));
     }
+    findRecentPending() {
+        return this.ordersService.findRecentPending();
+    }
 };
 exports.OrdersController = OrdersController;
 __decorate([
@@ -74,6 +77,12 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "estimatePreparationTime", null);
+__decorate([
+    (0, common_1.Get)('pending'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OrdersController.prototype, "findRecentPending", null);
 exports.OrdersController = OrdersController = __decorate([
     (0, common_1.Controller)('orders'),
     __metadata("design:paramtypes", [orders_service_1.OrdersService])

@@ -31,4 +31,9 @@ export class OrdersController {
   estimatePreparationTime(@Param('id') id: string) {
     return this.ordersService.estimatePreparationTime(Number(id));
   }
+
+  @Get('pending')
+  findRecentPending() {
+    return this.ordersService.findRecentPending();
+  }
 }
