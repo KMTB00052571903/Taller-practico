@@ -25,6 +25,9 @@ let OrdersController = class OrdersController {
     findAll() {
         return this.ordersService.findAll();
     }
+    findPendingQueue() {
+        return this.ordersService.findPendingQueue();
+    }
     update(id, updateOrderDto) {
         return this.ordersService.update(Number(id), updateOrderDto);
     }
@@ -37,6 +40,9 @@ let OrdersController = class OrdersController {
     estimatePreparationTime(id) {
         return this.ordersService.estimatePreparationTime(Number(id));
     }
+    getPriority(id) {
+        return this.ordersService.getPriority(Number(id));
+    }
     findRecentPending() {
         return this.ordersService.findRecentPending();
     }
@@ -48,6 +54,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('pending-queue'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OrdersController.prototype, "findPendingQueue", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
@@ -77,6 +89,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "estimatePreparationTime", null);
+__decorate([
+    (0, common_1.Get)(':id/priority'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], OrdersController.prototype, "getPriority", null);
 __decorate([
     (0, common_1.Get)('pending'),
     __metadata("design:type", Function),
