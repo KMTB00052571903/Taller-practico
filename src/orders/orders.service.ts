@@ -36,7 +36,7 @@ export class OrdersService {
       );
     }
 
-    //Primero creo, luego guardo
+    //Primero se crea, luego se guarda
     const order = this.ordersRepository.create({
       item: createOrderDto.item,
       quantity: createOrderDto.quantity,
@@ -44,7 +44,7 @@ export class OrdersService {
       customer,
     });
 
-    //Guardo en la base de datos y retorno el objeto guardado
+    //Se guarda en la base de datos y retorna el objeto guardado
     return this.ordersRepository.save(order);
   }
 
@@ -127,5 +127,30 @@ export class OrdersService {
         customer: true,
       },
     });
+  }
+
+  async findPendingQueue(): Promise<{
+    totalPending: number;
+    showing: number;
+    orders: OrderEntity[];
+  }> {
+    const totalPending = await this.ordersRepository.countBy({
+      status: 'pending',
+    });
+
+    const orders = await this.ordersRepository.find({
+      where: { status: 'pending' },
+      relations: {
+        customer: true,
+      },
+      order: { id: 'ASC' },
+      take: 5,
+    });
+
+    return {
+      totalPending,
+      showing: orders.length,
+      orders,
+    };
   }
 }

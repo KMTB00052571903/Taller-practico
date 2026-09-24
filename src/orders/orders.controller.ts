@@ -12,6 +12,11 @@ export class OrdersController {
     return this.ordersService.findAll();
   }
 
+  @Get('pending-queue')
+  findPendingQueue() {
+    return this.ordersService.findPendingQueue();
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
     return this.ordersService.update(Number(id), updateOrderDto);
