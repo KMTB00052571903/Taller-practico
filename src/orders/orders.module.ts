@@ -7,6 +7,7 @@ import { TypeOrmModule } from 'node_modules/@nestjs/typeorm/dist/typeorm.module'
 import { DiningEntity } from './entities/dining.entity';
 import { OrderRulesService } from './order-rules/order-rules.service';
 import { OrderPreparationEstimateService } from './order-preparation-estimate/order-preparation-estimate.service';
+import { OrderPriorityService } from './order-priority/order-priority.service';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { OrderPreparationEstimateService } from './order-preparation-estimate/or
     OrdersService,
     OrderRulesService,
     OrderPreparationEstimateService,
+    OrderPriorityService,
   ],
   controllers: [OrdersController],
 })

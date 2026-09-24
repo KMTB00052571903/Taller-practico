@@ -32,6 +32,11 @@ export class OrdersController {
     return this.ordersService.estimatePreparationTime(Number(id));
   }
 
+  @Get(':id/priority')
+  getPriority(@Param('id') id: string) {
+    return this.ordersService.getPriority(Number(id));
+  }
+
   @Get('pending')
   findRecentPending() {
     return this.ordersService.findRecentPending();
